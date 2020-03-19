@@ -31,7 +31,7 @@ add_user (){
 
 # This is run within the deployment hook if the configuration is not yet done.
 # If environment variable set create the admin account.
-if [[ -z "${ADMIN_USER}" ]]; then
+if [ -z "${ADMIN_USER}" ]; then
     ADMIN_USER='admin'
     ADMIN_PASSWORD=$(< /dev/urandom tr -dc _A-Z-a-z-0-9 | head -c${1:-12})
     echo -e "No ADMIN_USER set, generating admin account and password.\nTo login to your instance:\nUser: ${GREEN}${ADMIN_USER}${NC}\nPassword: ${RED}${ADMIN_PASSWORD}${NC}\n"
