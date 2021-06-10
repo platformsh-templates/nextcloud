@@ -36,7 +36,7 @@ ensure_download() {
         echo "Downloading ${APP_LABEL} archive."
         wget --quiet "$1"
         # If the version has changed, we'll want to make sure to not confuse it with the old one.
-        rm "${APP_NAME}"
+        rm -r "${APP_NAME}"
     fi
 }
 
