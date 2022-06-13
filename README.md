@@ -37,7 +37,7 @@ The following changes have been made relative to Nextcloud as it is downloaded f
 * The `install.sh` script is used for the initial installation of Nextcloud on the first deploy.  It is not needed afterward unless you want to reinitialize the installation.  (Note: "reinitialize" means "delete all data and start over".  This is a destructive operation with no rollback option.)  You may delete it if you wish.
 * The `nukedb.sql` file is used to wipe the SQL database.  It is used as part of `install.sh`.  Do not use it yourself unless you want to lose all of your data.  You may delete it if you wish.
 * There is a symlink `occ` in the project root that points to the `src/occ` file.  It allows you to run `occ` commands from the project root once deployed.
-* The `update.sh` script will read a desired Nextcloud version from a project variable and use that to download that version of Nextcloud and replace the code in `src` with it.  You can then commit and push the changes.  This is the preferred way to update your version of Nextcloud.  (The built-in self-updater will not work.)
+* The `update.sh` script will read a desired Nextcloud version from a project variable and use that to download that version of Nextcloud and replace the code in `src` with it.  This is the preferred way to update your version of Nextcloud.  (The built-in self-updater will not work.)
 * The `_apps` and `_themes` directories are for you to add Nextcloud apps and themes you wish to have installed.  They will be copied into the `src/apps` and `src/themes` directories, respectively, during the build process.  (The built-in app downoader will not work.)
 
 ## Installing applications
@@ -62,7 +62,7 @@ As part of the build process, applications and themes will be copied from the `_
 
 ## Updating Nextcloud
 
-To update to a new release of Nextcloud, modify the `.platform.app.yaml` file and change the NEXTCLOUD_VERSION environment variable.  The version listed there is the version that will be downloaded in the build process.
+To update to a new release of Nextcloud, modify the `.platform.app.yaml` file and change the NEXTCLOUD_VERSION environment variable.  The version listed there is the version that will be downloaded in the build process.  Afterwards, uncomment the line with `./update.sh` and comment the line with `./download-nextcloud.sh` in the build hook.  Commit and push your changes.
 
 ## Using Amazon S3 for storage
 
