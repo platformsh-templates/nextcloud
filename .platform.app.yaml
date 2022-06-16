@@ -23,7 +23,7 @@ build:
 variables:
     env:
         # Update this value to control the version of Nextcloud to install.
-        NEXTCLOUD_VERSION: 21.0.2
+        NEXTCLOUD_VERSION: 20.0.1
         front_controller_active: true
     php:
         opcache.interned_strings_buffer: 8
@@ -35,9 +35,6 @@ variables:
 
 hooks:
     build: |
-        # To update your Nextcloud installation uncomment the next line
-        # and comment the one after it.
-        #./update.sh
         ./download-nextcloud.sh $NEXTCLOUD_VERSION
         ./download-apps.sh
         chmod +x src/occ
@@ -45,14 +42,14 @@ hooks:
         cp -R _apps/* src/apps/ || true
     deploy: |
         mkdir -p /tmp/nextcloudtemp /tmp/cache /tmp/logs
-        # Only launch installation script if config does not exist.
+        # Only launch installation script if config does not exist
         if [ ! -f "src/config/config.php" ]; then
           ./install.sh
         fi
         ./occ maintenance:mode --on
         ./occ upgrade
         ./occ maintenance:repair
-        ./occ db:add-missing-indices
+        ./occ db:add-missing-indice
         ./occ maintenance:mode --off
         ./occ app:enable previewgenerator
 
