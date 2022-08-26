@@ -40,8 +40,11 @@ hooks:
         #./download-apps.sh
         ls -al "${PLATFORM_CACHE_DIR}"
         chmod +x src/occ
+        pwd
         cp -R _themes/* src/themes/ || true
         cp -R _apps/* src/apps/ || true
+        echo "do we already have a config.php file, even though i definitely deleted it?"
+        ls -al src/config
     deploy: |
         mkdir -p /tmp/nextcloudtemp /tmp/cache /tmp/logs
         # Only launch installation script if config does not exist
