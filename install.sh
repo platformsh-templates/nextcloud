@@ -1,4 +1,5 @@
 reset_config () {
+    echo "resetting confg"
     # Copy over basic configuration
     cp -R _config/* src/config/
     # remove any existing data in the mount
