@@ -5,7 +5,7 @@
 name: app
 
 # The runtime the application uses.
-type: "php:7.4"
+type: "php:8.0"
 
 runtime:
     extensions:
@@ -23,7 +23,7 @@ build:
 variables:
     env:
         # Update this value to control the version of Nextcloud to install.
-        NEXTCLOUD_VERSION: 20.0.1
+        NEXTCLOUD_VERSION: 25.0.1
         front_controller_active: true
     php:
         opcache.interned_strings_buffer: 8
@@ -109,10 +109,10 @@ crons:
     # Run NextClouds's cron tasks every 5 minutes.
     cron:
         spec: '*/5 * * * *'
-        commands:
+        commands: 
             start: 'cd src ; php cron.php'
     preview:
         spec: '*/10 * * * *'
-        commands:
+        commands: 
             start: './occ preview:pre-generate'
 
